@@ -43,3 +43,10 @@ on boot
     write /sys/devices/system/cpu/cpu1/online 0
     write /sys/devices/system/cpu/cpu2/online 0
     write /sys/devices/system/cpu/cpu3/online 0
+
+## Adds touch to wake support
+on fs
+    chown root shell /sys/devices/virtual/input/lge_touch/touch_gesture
+    chown root shell /sys/devices/virtual/input/lge_touch/tap_to_wake
+    write /sys/devices/virtual/input/lge_touch/touch_gesture 1
+    write /sys/devices/virtual/input/lge_touch/tap_to_wake 1
