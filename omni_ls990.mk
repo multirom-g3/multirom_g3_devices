@@ -34,6 +34,7 @@ PRODUCT_COPY_FILES += \
     device/lge/ls990/kernel:kernel \
     device/lge/ls990/dtb:dtb \
     device/lge/ls990/img_info:img_info \
+    device/lge/ls990/init.recovery.g3.rc:root/init.recovery.g3.rc \
     device/lge/ls990/postrecoveryboot.sh:recovery/root/sbin/postrecoveryboot.sh \
     device/lge/ls990/multirom/sign:recovery/root/res/sign
 
@@ -45,6 +46,12 @@ PRODUCT_DEVICE := ls990
 PRODUCT_BRAND := LG
 PRODUCT_MODEL := G3
 PRODUCT_MANUFACTURER := LG
+
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    PRODUCT_DEVICE="g3" \
+    PRODUCT_NAME="g3_spr_us" \
+    BUILD_FINGERPRINT="lge/g3_spr_us/g3:4.4.2/KVT49L.LS990ZV4/LS990ZV4.1403169216:user/release-keys" \
+    PRIVATE_BUILD_DESC="g3_spr_us-user 4.4.2 KVT49L.LS990ZV4 LS990ZV4.1403169216 release-keys"
 
 # Kernel inline build
 #TARGET_KERNEL_CONFIG := ls990_defconfig
