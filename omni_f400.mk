@@ -34,6 +34,7 @@ PRODUCT_COPY_FILES += \
     device/lge/f400/kernel:kernel \
     device/lge/f400/dtb:dtb \
     device/lge/f400/img_info:img_info \
+    device/lge/f400/init.recovery.g3.rc:root/init.recovery.g3.rc \
     device/lge/f400/multirom/postrecoveryboot.sh:recovery/root/sbin/postrecoveryboot.sh \
     device/lge/f400/multirom/sign:recovery/root/res/sign
 
@@ -45,6 +46,12 @@ PRODUCT_DEVICE := f400
 PRODUCT_BRAND := LG
 PRODUCT_MODEL := G3
 PRODUCT_MANUFACTURER := LG
+
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    PRODUCT_DEVICE="g3" \
+    PRODUCT_NAME="g3_kt_kr" \
+    BUILD_FINGERPRINT="lge/g3_kt_kr/g3:5.0/LRX21R/F400K20f.1419232865:user/release-keys" \
+    PRIVATE_BUILD_DESC="g3_kt_kr-user 5.0 LRX21R F400K20f.1419232865 release-keys"
 
 # Kernel inline build
 #TARGET_KERNEL_CONFIG := f400_defconfig
