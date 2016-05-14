@@ -34,6 +34,7 @@ PRODUCT_COPY_FILES += \
     device/lge/d850/kernel:kernel \
     device/lge/d850/dtb:dtb \
     device/lge/d850/img_info:img_info \
+    device/lge/d850/init.recovery.g3.rc:root/init.recovery.g3.rc \
     device/lge/d850/multirom/postrecoveryboot.sh:recovery/root/sbin/postrecoveryboot.sh \
     device/lge/d850/multirom/sign:recovery/root/res/sign
 
@@ -44,6 +45,12 @@ PRODUCT_DEVICE := d850
 PRODUCT_BRAND := LG
 PRODUCT_MODEL := G3
 PRODUCT_MANUFACTURER := LG
+
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    PRODUCT_DEVICE="g3" \
+    PRODUCT_NAME="g3_att_us" \
+    BUILD_FINGERPRINT="lge/g3_att_us/g3:4.4.2/KVT49L.D85010d/D85010d.1403173065:user/release-keys" \
+    PRIVATE_BUILD_DESC="g3_att_us-user 4.4.2 KVT49L.D85010d D85010d.1403173065 release-keys"
 
 # Kernel inline build
 #TARGET_KERNEL_CONFIG := d850_defconfig
