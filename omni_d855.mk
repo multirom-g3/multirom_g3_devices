@@ -34,6 +34,7 @@ PRODUCT_COPY_FILES += \
     device/lge/d855/kernel:kernel \
     device/lge/d855/dtb:dtb \
     device/lge/d855/img_info:img_info \
+    device/lge/d855/init.recovery.g3.rc:root/init.recovery.g3.rc \
     device/lge/d855/postrecoveryboot.sh:recovery/root/sbin/postrecoveryboot.sh \
     device/lge/d855/multirom/sign:recovery/root/res/sign
 
@@ -45,6 +46,12 @@ PRODUCT_DEVICE := d855
 PRODUCT_BRAND := LG
 PRODUCT_MODEL := G3
 PRODUCT_MANUFACTURER := LG
+
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    PRODUCT_DEVICE="g3" \
+    PRODUCT_NAME="g3_global_com" \
+    BUILD_FINGERPRINT="lge/g3_global_com/g3:6.0/MRA58K/15351124649f4:user/release-keys" \
+    PRIVATE_BUILD_DESC="g3_global_com-user 6.0 MRA58K 15351124649f4 release-keys"
 
 # Kernel inline build
 #TARGET_KERNEL_CONFIG := d855_defconfig
