@@ -34,6 +34,7 @@ PRODUCT_COPY_FILES += \
     device/lge/d856/kernel:kernel \
     device/lge/d856/dtb:dtb \
     device/lge/d856/img_info:img_info \
+    device/lge/d856/init.recovery.g3.rc:root/init.recovery.g3.rc \
     device/lge/d856/multirom/postrecoveryboot.sh:recovery/root/sbin/postrecoveryboot.sh \
     device/lge/d856/multirom/sign:recovery/root/res/sign
 
