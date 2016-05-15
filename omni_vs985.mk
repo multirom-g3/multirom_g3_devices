@@ -34,6 +34,7 @@ PRODUCT_COPY_FILES += \
     device/lge/vs985/kernel:kernel \
     device/lge/vs985/dtb:dtb \
     device/lge/vs985/img_info:img_info \
+    device/lge/vs985/init.recovery.g3.rc:root/init.recovery.g3.rc \
     device/lge/vs985/postrecoveryboot.sh:recovery/root/sbin/postrecoveryboot.sh \
     device/lge/vs985/multirom/sign:recovery/root/res/sign
 
@@ -45,3 +46,9 @@ PRODUCT_DEVICE := vs985
 PRODUCT_BRAND := LG
 PRODUCT_MODEL := G3
 PRODUCT_MANUFACTURER := LG
+
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    PRODUCT_DEVICE="g3" \
+    PRODUCT_NAME="g3_vzw_us" \
+    BUILD_FINGERPRINT="lge/g3_vzw/g3:6.0/MRA58K/160141503d43c:user/release-keys" \
+    PRIVATE_BUILD_DESC="g3_vzw-user 6.0 MRA58K 160141503d43c release-keys"
