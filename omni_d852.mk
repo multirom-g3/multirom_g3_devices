@@ -35,7 +35,7 @@ PRODUCT_COPY_FILES += \
     device/lge/d852/dtb:dtb \
     device/lge/d852/img_info:img_info \
     device/lge/d852/init.recovery.g3.rc:root/init.recovery.g3.rc \
-    device/lge/d852/multirom/postrecoveryboot.sh:recovery/root/sbin/postrecoveryboot.sh \
+    device/lge/d852/postrecoveryboot.sh:recovery/root/sbin/postrecoveryboot.sh \
     device/lge/d852/multirom/sign:recovery/root/res/sign
 
 PRODUCT_COPY_FILES += device/lge/d852/fstab.g3:recovery/root/fstab.g3
