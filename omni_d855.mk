@@ -38,7 +38,7 @@ PRODUCT_COPY_FILES += \
     device/lge/d855/postrecoveryboot.sh:recovery/root/sbin/postrecoveryboot.sh \
     device/lge/d855/multirom/sign:recovery/root/res/sign
 
-PRODUCT_COPY_FILES += device/lge/d855/multirom/fstab.g3:recovery/root/fstab.g3
+PRODUCT_COPY_FILES += device/lge/d855/fstab.g3:recovery/root/fstab.g3
 PRODUCT_COPY_FILES += device/lge/d855/multirom/twrp.fstab:recovery/root/etc/twrp.fstab
 
 PRODUCT_NAME := omni_d855
