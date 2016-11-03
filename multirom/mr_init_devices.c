@@ -37,6 +37,9 @@ const char *mr_init_devices[] =
 		// for qualcomm overlay - /dev/ion
 		"/sys/devices/virtual/misc/ion",
 
+		"/sys/devices/virtual/mem/null",
+		"/sys/devices/virtual/mem/zero",
+
 		NULL
 };
 
