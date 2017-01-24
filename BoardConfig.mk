@@ -76,7 +76,7 @@ BOARD_MKBOOTIMG_ARGS += --board mrom$(MR_REC_VERSION)-00
 
 # MultiROM
 TARGET_RECOVERY_IS_MULTIROM := true
-MR_DEVICE_SPECIFIC_VERSION := c
+MR_DEVICE_SPECIFIC_VERSION := d
 MR_NO_KEXEC := enabled
 MR_INPUT_TYPE := type_b
 MR_INIT_DEVICES := device/lge/d850/multirom/mr_init_devices.c
