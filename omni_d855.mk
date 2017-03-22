@@ -33,10 +33,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     device/lge/d855/kernel:kernel \
     device/lge/d855/dtb:dtb \
-    device/lge/d855/img_info:img_info \
-    device/lge/d855/init.recovery.g3.rc:root/init.recovery.g3.rc \
-    device/lge/d855/postrecoveryboot.sh:recovery/root/sbin/postrecoveryboot.sh \
-    device/lge/d855/multirom/sign:recovery/root/res/sign
+    device/lge/d855/img_info:img_info
 
 PRODUCT_NAME := omni_d855
 PRODUCT_DEVICE := d855
