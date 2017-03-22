@@ -33,10 +33,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     device/lge/vs985/kernel:kernel \
     device/lge/vs985/dtb:dtb \
-    device/lge/vs985/img_info:img_info \
-    device/lge/vs985/init.recovery.g3.rc:root/init.recovery.g3.rc \
-    device/lge/vs985/postrecoveryboot.sh:recovery/root/sbin/postrecoveryboot.sh \
-    device/lge/vs985/multirom/sign:recovery/root/res/sign
+    device/lge/vs985/img_info:img_info
 
 PRODUCT_NAME := omni_vs985
 PRODUCT_DEVICE := vs985
