@@ -33,10 +33,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     device/lge/f400/kernel:kernel \
     device/lge/f400/dtb:dtb \
-    device/lge/f400/img_info:img_info \
-    device/lge/f400/init.recovery.g3.rc:root/init.recovery.g3.rc \
-    device/lge/f400/postrecoveryboot.sh:recovery/root/sbin/postrecoveryboot.sh \
-    device/lge/f400/multirom/sign:recovery/root/res/sign
+    device/lge/f400/img_info:img_info
 
 PRODUCT_NAME := omni_f400
 PRODUCT_DEVICE := f400
