@@ -33,10 +33,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     device/lge/ls990/kernel:kernel \
     device/lge/ls990/dtb:dtb \
-    device/lge/ls990/img_info:img_info \
-    device/lge/ls990/init.recovery.g3.rc:root/init.recovery.g3.rc \
-    device/lge/ls990/postrecoveryboot.sh:recovery/root/sbin/postrecoveryboot.sh \
-    device/lge/ls990/multirom/sign:recovery/root/res/sign
+    device/lge/ls990/img_info:img_info
 
 PRODUCT_NAME := omni_ls990
 PRODUCT_DEVICE := ls990
