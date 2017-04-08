@@ -4,16 +4,22 @@
  * with corresponding hook version!
  */
 
-#include <stdio.h>
-#include <unistd.h>
-#include <sys/stat.h>
 #include <stdint.h>
-#include <time.h>
-#include <sys/types.h>
+#include <stdio.h>
 #include <sys/stat.h>
-#include <fcntl.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
+#include <private/android_filesystem_config.h>
+
+#include <errno.h>
+#include <fcntl.h>
 #include <log.h>
+#include <signal.h>
+#include <string.h>
+#include <time.h>
+#include <unistd.h>
+#include <util.h>
 
 #if MR_DEVICE_HOOKS >= 1
 int mrom_hook_after_android_mounts(const char *busybox_path, const char *base_path, int type)
@@ -21,7 +27,6 @@ int mrom_hook_after_android_mounts(const char *busybox_path, const char *base_pa
     return 0;
 }
 #endif /* MR_DEVICE_HOOKS >= 1 */
-
 
 #if MR_DEVICE_HOOKS >= 2
 void mrom_hook_before_fb_close(void)
@@ -38,18 +43,6 @@ static int read_file(const char *path, char *dest, int dest_size)
         return res;
 
     res = fgets(dest, dest_size, f) != NULL;
-    fclose(f);
-    return res;
-}
-
-static int write_file(const char *path, const char *what)
-{
-    int res = 0;
-    FILE *f = fopen(path, "w");
-    if(!f)
-        return res;
-
-    res = fputs(what, f) >= 0;
     fclose(f);
     return res;
 }
@@ -133,5 +126,81 @@ void tramp_hook_before_device_init(void)
 int mrom_hook_allow_incomplete_fstab(void)
 {
     return 1;
+}
+#endif
+
+#if MR_DEVICE_HOOKS >= 5
+void mrom_hook_fixup_bootimg_cmdline(char *bootimg_cmdline, size_t bootimg_cmdline_cap)
+{
+}
+
+int mrom_hook_has_kexec(void)
+{
+    // shamu kernels don't have /proc/config.gz, but they
+    // have CONFIG_PROC_DEVICETREE enabled by default, so check
+    // for /proc/device-tree/soc/kexec_hardboot-hole instead
+    // (the DTB node that reserves memory for kexec-hardboot page).
+
+    static const char *checkfile = "/proc/device-tree/soc/kexec_hardboot-hole";
+    if(access(checkfile, R_OK) < 0)
+    {
+        ERROR("%s was not found!\n", checkfile);
+        return 0;
+    }
+    return 1;
+}
+#endif
+
+#if MR_DEVICE_HOOKS >= 6
+static int fork_and_exec(char **cmd, char** env)
+{
+    pid_t pID = fork();
+    if(pID == 0)
+    {
+        stdio_to_null();
+        setpgid(0, getpid());
+        execve(cmd[0], cmd, env);
+        ERROR("Failed to exec %s: %s\n", cmd[0], strerror(errno));
+        _exit(127);
+    }
+    return pID;
+}
+
+static int qseecomd_pid = -1;
+
+void tramp_hook_encryption_setup(void)
+{
+    // start qseecomd
+    char* cmd[] = {"/mrom_enc/qseecomd", NULL};
+    char* env[] = {"LD_LIBRARY_PATH=/mrom_enc", NULL};
+
+    // setup links and permissions based on TWRP's
+    remove("/vendor");
+    symlink("/mrom_enc/vendor", "/vendor");
+    chmod("/dev/qseecom", 0660);
+    chown("/dev/qseecom", AID_SYSTEM, AID_DRMRPC);
+    chmod("/dev/ion", 0664);
+    chown("/dev/ion", AID_SYSTEM, AID_SYSTEM);
+    chmod("/mrom_enc/qseecomd", 0755);
+    qseecomd_pid = fork_and_exec(cmd, env);
+    if (qseecomd_pid == -1)
+        ERROR("Failed to fork for qseecomd; should never happen!\n");
+    else
+        INFO("qseecomd started: pid=%d\n", qseecomd_pid);
+}
+
+void tramp_hook_encryption_cleanup(void)
+{
+    struct stat info;
+    if (qseecomd_pid != -1)
+    {
+        kill(-qseecomd_pid, SIGTERM); // kill the entire process group
+        waitpid(qseecomd_pid, NULL, 0);
+    }
+    INFO("cleaned up after qseecomd\n");
+}
+
+void mrom_hook_fixup_full_cmdline(char *bootimg_cmdline, size_t bootimg_cmdline_cap)
+{
 }
 #endif

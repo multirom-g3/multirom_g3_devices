@@ -52,8 +52,6 @@ TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TW_MAX_BRIGHTNESS := 255
 TW_EXCLUDE_SUPERSU := true
 TW_THEME := portrait_hdpi
-TW_INCLUDE_JB_CRYPTO := true
-TW_INCLUDE_CRYPTO := true
 
 # MultiROM Recovery Version
 MR_REC_VERSION := $(shell date -u +%Y%m%d)
@@ -61,6 +59,10 @@ BOARD_MKBOOTIMG_ARGS += --board mrom$(MR_REC_VERSION)-00
 
 # MultiROM
 TARGET_RECOVERY_IS_MULTIROM := true
+MR_ENCRYPTION := true
+MR_ENCRYPTION_SETUP_SCRIPT := device/lge/d851/multirom/mr_cp_crypto.sh
+MR_ENCRYPTION_FAKE_PROPERTIES := true
+MR_ENCRYPTION_FAKE_PROPERTIES_EXTRAS := device/lge/d851/multirom/mr_fake_properties.c
 MR_DEVICE_SPECIFIC_VERSION := e
 MR_NO_KEXEC := enabled
 MR_INPUT_TYPE := type_b
@@ -74,7 +76,7 @@ MR_KEXEC_MEM_MIN := 0x0ff00000
 MR_KEXEC_DTB := true
 MR_RD_ADDR := 0x2200000
 MR_DEVICE_HOOKS := device/lge/d851/multirom/mr_hooks.c
-MR_DEVICE_HOOKS_VER := 4
+MR_DEVICE_HOOKS_VER := 6
 MR_DEFAULT_BRIGHTNESS := 80
 MR_PIXEL_FORMAT := "RGBX_8888"
 MR_USE_QCOM_OVERLAY := true
