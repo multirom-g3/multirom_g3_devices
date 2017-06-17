@@ -66,7 +66,7 @@ BOARD_MKBOOTIMG_ARGS += --board mrom$(MR_REC_VERSION)-00
 
 # MultiROM
 TARGET_RECOVERY_IS_MULTIROM := true
-MR_DEVICE_SPECIFIC_VERSION := d
+MR_DEVICE_SPECIFIC_VERSION := e
 MR_NO_KEXEC := enabled
 MR_INPUT_TYPE := type_b
 MR_INIT_DEVICES := device/lge/f400/multirom/mr_init_devices.c
