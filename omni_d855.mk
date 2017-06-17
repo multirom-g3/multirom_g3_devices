@@ -38,9 +38,6 @@ PRODUCT_COPY_FILES += \
     device/lge/d855/postrecoveryboot.sh:recovery/root/sbin/postrecoveryboot.sh \
     device/lge/d855/multirom/sign:recovery/root/res/sign
 
-PRODUCT_COPY_FILES += device/lge/d855/fstab.g3:recovery/root/fstab.g3
-PRODUCT_COPY_FILES += device/lge/d855/multirom/twrp.fstab:recovery/root/etc/twrp.fstab
-
 PRODUCT_NAME := omni_d855
 PRODUCT_DEVICE := d855
 PRODUCT_BRAND := LG
@@ -52,8 +49,3 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     PRODUCT_NAME="g3_global_com" \
     BUILD_FINGERPRINT="lge/g3_global_com/g3:6.0/MRA58K/15351124649f4:user/release-keys" \
     PRIVATE_BUILD_DESC="g3_global_com-user 6.0 MRA58K 15351124649f4 release-keys"
-
-# Kernel inline build
-#TARGET_KERNEL_CONFIG := d855_defconfig
-#TARGET_VARIANT_CONFIG := d855_defconfig
-#TARGET_SELINUX_CONFIG := d855_defconfig
