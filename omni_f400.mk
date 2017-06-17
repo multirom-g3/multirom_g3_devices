@@ -38,9 +38,6 @@ PRODUCT_COPY_FILES += \
     device/lge/f400/postrecoveryboot.sh:recovery/root/sbin/postrecoveryboot.sh \
     device/lge/f400/multirom/sign:recovery/root/res/sign
 
-PRODUCT_COPY_FILES += device/lge/f400/fstab.g3:recovery/root/fstab.g3
-PRODUCT_COPY_FILES += device/lge/f400/multirom/twrp.fstab:recovery/root/etc/twrp.fstab
-
 PRODUCT_NAME := omni_f400
 PRODUCT_DEVICE := f400
 PRODUCT_BRAND := LG
@@ -52,8 +49,3 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     PRODUCT_NAME="g3_kt_kr" \
     BUILD_FINGERPRINT="lge/g3_kt_kr/g3:5.0/LRX21R/F400K20f.1419232865:user/release-keys" \
     PRIVATE_BUILD_DESC="g3_kt_kr-user 5.0 LRX21R F400K20f.1419232865 release-keys"
-
-# Kernel inline build
-#TARGET_KERNEL_CONFIG := f400_defconfig
-#TARGET_VARIANT_CONFIG := f400_defconfig
-#TARGET_SELINUX_CONFIG := f400_defconfig
