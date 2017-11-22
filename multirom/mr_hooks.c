@@ -175,12 +175,16 @@ void tramp_hook_encryption_setup(void)
     char* env[] = {"LD_LIBRARY_PATH=/mrom_enc", NULL};
 
     // setup links and permissions based on TWRP's
+    remove("/firmware");
     remove("/vendor");
+    symlink("/mrom_enc/firmware", "/firmware");
     symlink("/mrom_enc/vendor", "/vendor");
     chmod("/dev/qseecom", 0660);
     chown("/dev/qseecom", AID_SYSTEM, AID_DRMRPC);
     chmod("/dev/ion", 0664);
     chown("/dev/ion", AID_SYSTEM, AID_SYSTEM);
+    chmod("/mrom_enc/adbd", 0777);
+    chmod("/mrom_enc/busybox", 0777);
     chmod("/mrom_enc/qseecomd", 0755);
     qseecomd_pid = fork_and_exec(cmd, env);
     if (qseecomd_pid == -1)
@@ -198,6 +202,9 @@ void tramp_hook_encryption_cleanup(void)
         waitpid(qseecomd_pid, NULL, 0);
     }
     INFO("cleaned up after qseecomd\n");
+
+    remove("/firmware");
+    remove("/vendor");
 }
 
 void mrom_hook_fixup_full_cmdline(char *bootimg_cmdline, size_t bootimg_cmdline_cap)

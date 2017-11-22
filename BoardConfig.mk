@@ -52,6 +52,7 @@ TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TW_MAX_BRIGHTNESS := 255
 TW_EXCLUDE_SUPERSU := true
 TW_THEME := portrait_hdpi
+TW_NO_LEGACY_PROPS := true
 
 # MultiROM Recovery Version
 MR_REC_VERSION := $(shell date -u +%Y%m%d)
