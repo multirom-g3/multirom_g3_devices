@@ -63,6 +63,7 @@ MR_ENCRYPTION := true
 MR_ENCRYPTION_SETUP_SCRIPT := device/lge/d851/multirom/mr_cp_crypto.sh
 MR_ENCRYPTION_FAKE_PROPERTIES := true
 MR_ENCRYPTION_FAKE_PROPERTIES_EXTRAS := device/lge/d851/multirom/mr_fake_properties.c
+MR_QSEECOMD_HAX := true
 MR_DEVICE_SPECIFIC_VERSION := e
 MR_NO_KEXEC := enabled
 MR_INPUT_TYPE := type_b
