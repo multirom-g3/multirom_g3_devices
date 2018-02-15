@@ -31,9 +31,9 @@ PRODUCT_PACKAGES += \
     charger
 
 PRODUCT_COPY_FILES += \
-    device/lge/f400/kernel:kernel \
-    device/lge/f400/dtb:dtb \
-    device/lge/f400/img_info:img_info
+    $(LOCAL_PATH)/kernel:kernel \
+    $(LOCAL_PATH)/dtb:dtb \
+    $(LOCAL_PATH)/img_info:img_info
 
 PRODUCT_NAME := omni_f400
 PRODUCT_DEVICE := f400
