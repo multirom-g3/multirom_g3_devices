@@ -15,4 +15,4 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_PATH)/omni_vs985.mk
+    $(LOCAL_DIR)/omni_vs985.mk
