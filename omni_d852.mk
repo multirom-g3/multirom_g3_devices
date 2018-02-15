@@ -31,9 +31,9 @@ PRODUCT_PACKAGES += \
     charger
 
 PRODUCT_COPY_FILES += \
-    device/lge/d852/kernel:kernel \
-    device/lge/d852/dtb:dtb \
-    device/lge/d852/img_info:img_info
+    $(LOCAL_PATH)/kernel:kernel \
+    $(LOCAL_PATH)/dtb:dtb \
+    $(LOCAL_PATH)/img_info:img_info
 
 PRODUCT_NAME := omni_d852
 PRODUCT_DEVICE := d852

@@ -40,6 +40,10 @@ const char *mr_init_devices[] =
 		"/sys/devices/virtual/mem/null",
 		"/sys/devices/virtual/mem/zero",
 
+		// Encryption
+		"/sys/devices/virtual/misc/device-mapper",
+		"/sys/devices/virtual/qseecom/qseecom",
+
 		NULL
 };
 
