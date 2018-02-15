@@ -1,3 +1,5 @@
+LOCAL_PATH := device/lge/d850
+
 TARGET_OTA_ASSERT_DEVICE := d850
 
 # Platform
@@ -26,13 +28,13 @@ TARGET_KEYMASTER_WAIT_FOR_QSEE := true
 
 # Kernel
 BOARD_CUSTOM_BOOTIMG := true
-BOARD_CUSTOM_BOOTIMG_MK := device/lge/d850/mkbootimg.mk
+BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/mkbootimg.mk
 BOARD_KERNEL_CMDLINE := console=none androidboot.hardware=g3 user_debug=31 msm_rtb.filter=0x0
 BOARD_KERNEL_BASE := 0x0000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_SEPARATED_DT := true
-BOARD_MKBOOTIMG_ARGS := --dt device/lge/d850/dtb --kernel_offset 0x0008000 --ramdisk_offset 0x2000000 --second_offset 0x0f00000 --tags_offset 0x0000100
-TARGET_PREBUILT_KERNEL := device/lge/d850/kernel
+BOARD_MKBOOTIMG_ARGS := --dt $(LOCAL_PATH)/dtb --kernel_offset 0x0008000 --ramdisk_offset 0x2000000 --second_offset 0x0f00000 --tags_offset 0x0000100
+TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/kernel
 
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 131072
@@ -57,8 +59,6 @@ TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TW_MAX_BRIGHTNESS := 255
 TW_EXCLUDE_SUPERSU := true
 TW_THEME := portrait_hdpi
-TW_INCLUDE_JB_CRYPTO := true
-TW_INCLUDE_CRYPTO := true
 
 # MultiROM Recovery Version
 MR_REC_VERSION := $(shell date -u +%Y%m%d)
@@ -66,22 +66,27 @@ BOARD_MKBOOTIMG_ARGS += --board mrom$(MR_REC_VERSION)-00
 
 # MultiROM
 TARGET_RECOVERY_IS_MULTIROM := true
+MR_ENCRYPTION := true
+MR_ENCRYPTION_SETUP_SCRIPT := $(LOCAL_PATH)/multirom/mr_cp_crypto.sh
+MR_ENCRYPTION_FAKE_PROPERTIES := true
+MR_ENCRYPTION_FAKE_PROPERTIES_EXTRAS := $(LOCAL_PATH)/multirom/mr_fake_properties.c
+MR_QSEECOMD_HAX := true
 MR_DEVICE_SPECIFIC_VERSION := e
 MR_NO_KEXEC := enabled
 MR_INPUT_TYPE := type_b
-MR_INIT_DEVICES := device/lge/d850/multirom/mr_init_devices.c
+MR_INIT_DEVICES := $(LOCAL_PATH)/multirom/mr_init_devices.c
 MR_DPI := xhdpi
 MR_DPI_MUL := 1.5
 MR_DPI_FONT := 420
-MR_FSTAB := device/lge/d850/recovery.fstab
+MR_FSTAB := $(LOCAL_PATH)/recovery.fstab
 MR_USE_MROM_FSTAB := true
 MR_KEXEC_MEM_MIN := 0x0ff00000
 MR_KEXEC_DTB := true
 MR_RD_ADDR := 0x2200000
-MR_DEVICE_HOOKS := device/lge/d850/multirom/mr_hooks.c
-MR_DEVICE_HOOKS_VER := 4
+MR_DEVICE_HOOKS := $(LOCAL_PATH)/multirom/mr_hooks.c
+MR_DEVICE_HOOKS_VER := 6
 MR_DEFAULT_BRIGHTNESS := 80
 MR_PIXEL_FORMAT := "RGBX_8888"
 MR_USE_QCOM_OVERLAY := true
-MR_QCOM_OVERLAY_HEADER := device/lge/d850/multirom/mr_qcom_overlay.h
+MR_QCOM_OVERLAY_HEADER := $(LOCAL_PATH)/multirom/mr_qcom_overlay.h
 MR_QCOM_OVERLAY_CUSTOM_PIXEL_FORMAT := MDP_RGBX_8888

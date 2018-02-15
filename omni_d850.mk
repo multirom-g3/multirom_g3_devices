@@ -31,9 +31,9 @@ PRODUCT_PACKAGES += \
     charger
 
 PRODUCT_COPY_FILES += \
-    device/lge/d850/kernel:kernel \
-    device/lge/d850/dtb:dtb \
-    device/lge/d850/img_info:img_info
+    $(LOCAL_PATH)/kernel:kernel \
+    $(LOCAL_PATH)/dtb:dtb \
+    $(LOCAL_PATH)/img_info:img_info
 
 PRODUCT_NAME := omni_d850
 PRODUCT_DEVICE := d850
